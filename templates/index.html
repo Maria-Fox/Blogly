@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Blogly</title>
+    <link rel="stylesheet" href="/static/index.css" />
+  </head>
+  <body>
+    <h1 id="header">Blogly</h1>
+
+    <h2 id="list-header">Users</h2>
+    <ul id="user-list">
+      {% for user in users %}
+      <li>
+        <a href="users/{{user.id}}">{{user.first_name}} {{user.last_name}}</a>
+      </li>
+      {%endfor%}
+    </ul>
+    <a id="submit-link" href="/users/new" method="get">Create a New User</a>
+  </body>
+</html>

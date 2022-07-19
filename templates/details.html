@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>User Details</title>
+    <link rel="stylesheet" href="/static/details.css" />
+  </head>
+  <body>
+    <h1 id="header">User Details</h1>
+    <img src="{{user.image_url}}" alt="user profile" id="user-profile" />
+    <h2>{{user.first_name}} {{user.last_name}}</h2>
+    <form>
+      <button formaction="/users/{{ user.id }}/edit" formmethod="GET">
+        Edit
+      </button>
+      <button formaction="/users/{{ user.id }}/delete" formmethod="POST">
+        Delete
+      </button>
+    </form>
+    <a href="/users" id="link-home">Visit Home Page</a>
+  </body>
+</html>
