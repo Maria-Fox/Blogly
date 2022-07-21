@@ -1,7 +1,7 @@
 from flask import Flask, pytest
 from app import app
 from unittest import TestCase
-from models import User
+from models import User, Post
 
 class UsersTestCase(TestCase):
   '''Testing the user routes within app.py'''

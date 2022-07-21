@@ -4,11 +4,11 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Create Post</title>
+    <title>Edit Post</title>
     <link rel="stylesheet" href="/static/form.css">
   </head>
   <body>
-    <h1 id="header">Create a New Post for: {{user.first_name}} {{user.last_name}}</h1>
+    <h1 id="header">Edit {{post.title}} Details</h1>
     <body>
       <div id="content">
 
@@ -20,31 +20,26 @@
               type="text"
               id="title"
               name="title"
-              placeholder="Title Here"
+              placeholder="The Best Title"
               required
             />
           </label>
           <label for="post-content"
             >Content
             <input
-              type="text"
+              type="text-area"
               id="post-content"
               name="post-content"
-              placeholder="I love to use Blogly!"
+              placeholder="Awesome content"
               required
             />
-            </label>
+          </label>
+          <p>Previous Content: {{post.content}}</p>
           <br />
-          <br />
-        <form>
-          <button formaction="/users/{{user.user_id}}/posts/new" formmethod="POST">
-            Add Post
-          </button>
-          <a href="/users/{{user.user_id}}" id="cancel-butt">Cancel</a>
+          <button type="submit">Save Changes</button>
+          <a href="/users/{{post.user_id}}"id ="cancel-butt">Cancel</a>
         </form>
       </div>
-
-      
       <a href="/users" id="link-home">Visit Home Page</a>
   </body>
 </html>

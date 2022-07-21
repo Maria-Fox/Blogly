@@ -10,28 +10,35 @@
   <body>
     <h1 id="header">User Details</h1>
     <!-- User Bio Section -->
-    <img src="{{user.image_url}}" alt="user profile" id="user-profile" />
-    <h2>{{user.first_name}} {{user.last_name}}</h2>
-    <form>
-      <button formaction="/users/{{user.user_id }}/edit" formmethod="GET">
-        Edit
-      </button>
-      <button formaction="/users/{{user.user_id}}/delete" formmethod="POST">
-        Delete
-      </button>
-    </form>
+    <div id="user-pic">
+      <img src="{{user.image_url}}" alt="user profile" id="pic" />
+    </div>
 
-    <!-- Create Posts Section -->
-    {{user.user_id}}
-    <a href="/users/{{user.user_id}}/posts/new" id="look-butt" method="get"
-      >Create New Post</a
-    >
-    <ul>
+    <div id="content">
+      <h2>{{user.first_name}} {{user.last_name}}</h2>
+      <form>
+        <button formaction="/users/{{user.user_id }}/edit" formmethod="GET">
+          Edit Profile
+        </button>
+        <button formaction="/users/{{user.user_id}}/delete" formmethod="POST">
+          Delete Profile
+        </button>
+        <button formaction="/users/{{user.user_id}}/posts/new" formmethod="GET">
+          Create New Post
+        </button>
+      </form>
+    </div>
+
+    <!-- Posts section -->
+    <div class="post-div">
+      <h2>Posts</h2>
       <!-- List of Posts  -->
       {% for post in posts %}
-      <li><a href="THE ROUTE FOR THE POST ID">{{post.title}}</a></li>
+      <ul>
+        <li><a href="/posts/{{post.post_id}}">{{post.title}}</a></li>
+      </ul>
       {%endfor%}
-    </ul>
+    </div>
 
     <!-- Return to Home Page Nav  -->
     <a href="/users" id="link-home">Visit Home Page</a>

@@ -3,8 +3,6 @@
 from flask import Flask, request, render_template, redirect
 from models import db, connect_db, User, Post
 from flask_debugtoolbar import DebugToolbarExtension
-import datetime
-# datetime used for adding current time to post
 
 app = Flask(__name__)
 #set a  secret key for session cookies
@@ -74,7 +72,7 @@ def edit_page(user_id):
 
 @app.route("/users/<int:user_id>/edit", methods= ["POST"])
 def process_form(user_id):
-    '''Process edit formreturning user to the /users page'''
+    '''Process edit form returning user to the /users page'''
 
     user = User.query.get_or_404(user_id)
 
@@ -109,22 +107,68 @@ def posts_new_form(user_id):
     return render_template('postNew.html', user=user)
 
 
-# NEEDS WORK THE USER IS NOT BEING PASSED IN - ASSUME IT'S A KEY ISSUE?
 @app.route("/users/<int:user_id>/posts/new", methods= ["POST"])
 def handle_form(user_id):
     '''Process the post information by given user, save to DB, redirect to details.'''
-  
-    user_id= User.query.get_or_404(user_id)
-    # created_at  = datetime.datetime.now() - if the default were not in psql
 
     title = request.form["title"]
-    content = request.form["content"]
+    content = request.form["post-content"]
 
-    new_post = Post(title= title, content= content)
+    new_post = Post(title= title, content= content, user_id = user_id)
 
     db.session.add(new_post)
     db.session.commit()
 
     return redirect (f"/users/{user_id}")
+
+
+@app.route("/posts/<int:post_id>")
+def show_post(post_id):
+  '''Show a given post details.'''
+
+  post = Post.query.get_or_404(post_id)
+
+  return render_template("postDetails.html",post= post)
+
+@app.route("/posts/<int:post_id>/edit")
+def showed_form(post_id):
+    '''Display post edit form'''
+
+    post = Post.query.get_or_404(post_id)
+    # get the user id that matches the user with that post
+
+    return render_template("editPost.html", post = post)
+
+
+@app.route("/posts/<int:post_id>/edit", methods = ["POST"])
+def handle_edit(post_id):
+    '''Update post information based on input'''
+
+    post = Post.query.get_or_404(post_id)
+
+    post.title = request.form['title']
+    post.content = request.form['post-content']
+
+    db.session.add(post)
+    db.session.commit()
+    return redirect(f"/users/{post.user_id}")
+
+# route is not deleting the post?
+@app.route("/posts/<int:post_id>/delete", methods = ["POST"])
+def delete_post(post_id):
+    '''Delete given post'''
+
+    delete_post = Post.query.get_or_404(post_id)
+
+    db.session.add(delete_post)
+    db.session.commit()
+
+    return redirect(f"/users/{delete_post.user_id}")
+
+
+
+
+
+
 
 
