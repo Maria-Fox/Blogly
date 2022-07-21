@@ -5,6 +5,8 @@ from sqlalchemy import PrimaryKeyConstraint
 db = SQLAlchemy()
 import datetime
 
+standard_pic_URL = "https://images.unsplash.com/photo-1549633030-89d0743bad01?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8Z29vZCUyMGx1Y2t8ZW58MHx8MHx8&auto=format&fit=crop&w=400&q=60"
+
 def connect_db(app):
   '''Connect to database.'''
   
@@ -24,7 +26,7 @@ class User(db.Model):
   user_id = db.Column(db.Integer, primary_key=True, autoincrement= True)
   first_name = db.Column(db.Text, nullable = False)
   last_name = db.Column(db.Text)
-  image_url = db.Column(db.Text)
+  image_url = db.Column(db.Text, default=standard_pic_URL)
 
   # conncts to Post class, dletes all users posts by cascading if user is deleted
   posts = db.relationship('Post', cascade = "all, delete-orphan")

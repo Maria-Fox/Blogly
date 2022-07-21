@@ -10,16 +10,23 @@
   <body>
     <h1 id="header">{{post.title}} Details</h1>
 
-    <p id="content">{{post.content}}</p>
-
-    <form>
-      <button formaction="/posts/{{post.post_id}}/edit" formmethod="GET">
-        Edit
-      </button>
-      <button formaction="/posts/{{post.post_id}}/delete" formmethod="post">
-        Delete
-      </button>
-    </form>
+    <div id="content">
+      <p>Title:{{post.title}}</p>
+      <p>Content:{{post.content}}</p>
+      <small>Created on: {{post.created_at}}</small>
+      <br />
+      <form>
+        <button formaction="/posts/{{post.post_id}}/edit" formmethod="GET">
+          Edit Post
+        </button>
+        <button formaction="/posts/{{post.post_id}}/delete" formmethod="post">
+          Delete Post
+        </button>
+        <button formaction="/users/{{post.user_id}}">
+          Return to User Profile
+        </button>
+      </form>
+    </div>
 
     <!-- Return to user details page LINK FIX THIS LATER-->
 

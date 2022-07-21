@@ -10,9 +10,11 @@
   <body>
     <h1 id="header">User Details</h1>
     <!-- User Bio Section -->
+    {% if user.image_url %}
     <div id="user-pic">
       <img src="{{user.image_url}}" alt="user profile" id="pic" />
     </div>
+    {%endif%}
 
     <div id="content">
       <h2>{{user.first_name}} {{user.last_name}}</h2>
@@ -32,8 +34,9 @@
     <!-- Posts section -->
     <div class="post-div">
       <h2>Posts</h2>
+      {{user.content}}
       <!-- List of Posts  -->
-      {% for post in posts %}
+      {% for post in user.posts %}
       <ul>
         <li><a href="/posts/{{post.post_id}}">{{post.title}}</a></li>
       </ul>

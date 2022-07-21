@@ -15,7 +15,7 @@
         <!-- form -->
         <form method="POST">
           <label for="title">
-            Title
+            New Title
             <input
               type="text"
               id="title"
@@ -25,7 +25,7 @@
             />
           </label>
           <label for="post-content"
-            >Content
+            >New Content
             <input
               type="text-area"
               id="post-content"
@@ -34,7 +34,11 @@
               required
             />
           </label>
-          <p>Previous Content: {{post.content}}</p>
+          <div>
+            <h3>Current Content</h3>
+            <p>Title:{{post.title}}</p>
+            <p>Content:{{post.content}}</p>
+          </div>
           <br />
           <button type="submit">Save Changes</button>
           <a href="/users/{{post.user_id}}"id ="cancel-butt">Cancel</a>
