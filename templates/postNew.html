@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Create Post</title>
+    <link rel="stylesheet" href="/static/form.css">
+  </head>
+  <body>
+    <h1 id="header">Create a New Post for: {{user.first_name}} {{user.last_name}}</h1>
+    <body>
+      <div id="content">
+
+        <!-- form -->
+        <form method="POST">
+          <label for="title">
+            Title
+            <input
+              type="text"
+              id="title"
+              name="title"
+              placeholder="Title Here"
+              required
+            />
+          </label>
+          <label for="content"
+            >Content
+            <input
+              type="text"
+              id="content"
+              name="content"
+              placeholder="I love to use Blogly!"
+              required
+            />
+            </label>
+          <br />
+          <br />
+          <button formaction="/users/{{user.user_id}}/posts/new" formmethod="POST">
+            Add Post
+          </button>
+          <a href="/users" id="cancel-butt">Cancel</a>
+        </form>
+      </div>
+
+      
+      <a href="/users" id="link-home">Visit Home Page</a>
+  </body>
+</html>

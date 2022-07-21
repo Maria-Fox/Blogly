@@ -18,3 +18,18 @@ button {
 button:hover {
   background-color: rgba(221, 154, 206, 0.3);
 }
+
+#look-butt {
+  border: 2px solid black;
+  border-radius: 15px;
+  padding: 5px;
+  position: relative;
+  top: 90px;
+  text-decoration: none;
+  color: white;
+  background-color: rgb(162, 138, 230);
+}
+
+#look-butt:hover {
+  background-color: rgb(145, 109, 243);
+}

@@ -20,5 +20,12 @@ VALUES
 ('Emery', 'Sun', 'https://images.unsplash.com/photo-1469334031218-e382a71b716b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MjB8fGdpcmx8ZW58MHx8MHx8&auto=format&fit=crop&w=400&q=60')
 ;
 
+CREATE TABLE posts (
+  post_id SERIAL PRIMARY KEY,
+  title TEXT not null,
+  content TEXT,
+  created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
+  user_id INTEGER REFERENCES users(user_id)
+);
 
 

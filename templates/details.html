@@ -9,16 +9,31 @@
   </head>
   <body>
     <h1 id="header">User Details</h1>
+    <!-- User Bio Section -->
     <img src="{{user.image_url}}" alt="user profile" id="user-profile" />
     <h2>{{user.first_name}} {{user.last_name}}</h2>
     <form>
-      <button formaction="/users/{{ user.id }}/edit" formmethod="GET">
+      <button formaction="/users/{{user.user_id }}/edit" formmethod="GET">
         Edit
       </button>
-      <button formaction="/users/{{ user.id }}/delete" formmethod="POST">
+      <button formaction="/users/{{user.user_id}}/delete" formmethod="POST">
         Delete
       </button>
     </form>
+
+    <!-- Create Posts Section -->
+    {{user.user_id}}
+    <a href="/users/{{user.user_id}}/posts/new" id="look-butt" method="get"
+      >Create New Post</a
+    >
+    <ul>
+      <!-- List of Posts  -->
+      {% for post in posts %}
+      <li><a href="THE ROUTE FOR THE POST ID">{{post.title}}</a></li>
+      {%endfor%}
+    </ul>
+
+    <!-- Return to Home Page Nav  -->
     <a href="/users" id="link-home">Visit Home Page</a>
   </body>
 </html>
