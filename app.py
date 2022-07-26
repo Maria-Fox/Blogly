@@ -169,8 +169,8 @@ def handle_edit(post_id):
     db.session.add(post)
     db.session.commit()
     return redirect(f"/users/{post.user_id}")
+    
 
-# route is not deleting the post?
 @app.route("/posts/<int:post_id>/delete", methods = ["POST"])
 def delete_post(post_id):
     '''Delete given post'''
