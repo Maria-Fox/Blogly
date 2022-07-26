@@ -40,6 +40,15 @@
             <p>Content:{{post.content}}</p>
           </div>
           <br />
+
+          {%for tag in tags%}
+          <label for="tags">
+          <input type="checkbox" id = {{tag.id}} name = "tags" value = {{tag.id}}>{{tag.name}}
+        </label>
+        {%endfor%}
+        <br>
+        <br>
+
           <button type="submit">Save Changes</button>
           <a href="/users/{{post.user_id}}"id ="cancel-butt">Cancel</a>
         </form>

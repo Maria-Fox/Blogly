@@ -1,11 +1,11 @@
 """Models for Blogly."""
 from tkinter import CASCADE
 from flask_sqlalchemy import SQLAlchemy
-from sqlalchemy import PrimaryKeyConstraint
+from sqlalchemy import ForeignKey, PrimaryKeyConstraint
 db = SQLAlchemy()
 import datetime
 
-standard_pic_URL = "https://images.unsplash.com/photo-1549633030-89d0743bad01?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8Z29vZCUyMGx1Y2t8ZW58MHx8MHx8&auto=format&fit=crop&w=400&q=60"
+standard_pic_URL = "https://images.unsplash.com/photo-1600265360004-c16515250359?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NDR8fGZyaWVuZHN8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60"
 
 def connect_db(app):
   '''Connect to database.'''
@@ -26,10 +26,10 @@ class User(db.Model):
   user_id = db.Column(db.Integer, primary_key=True, autoincrement= True)
   first_name = db.Column(db.Text, nullable = False)
   last_name = db.Column(db.Text)
-  image_url = db.Column(db.Text, default=standard_pic_URL)
+  image_url = db.Column(db.Text, default = standard_pic_URL)
 
-  # conncts to Post class, dletes all users posts by cascading if user is deleted
-  posts = db.relationship('Post', cascade = "all, delete-orphan")
+  # conncts to Post class, deletes all users posts by cascading if user is deleted
+  posts = db.relationship('Post', backref = "user", cascade = "all, delete-orphan")
 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
 
@@ -53,7 +53,62 @@ class Post(db.Model):
         default=datetime.datetime.now)
   user_id = db.Column(db.Integer, db.ForeignKey('users.user_id'), nullable = False)
 
-# connects to User class
-  users = db.relationship('User')
+# Relationships 
+  # users = db.relationship('User')
+  ptag_1 = db.relationship('PostTag')
+  thru_rel = db.relationship('Tag', secondary  = 'post_tags')
+
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
+
+class Tag(db.Model):
+    '''Holds tag and post id.'''
+
+    def __repr__(self):
+      '''Include post id and post creator.'''
+
+      t = self
+      return f"<The tag name is {t.name} with an id of {t.id}>"
+
+    __tablename__ = 'tags'
+
+    id = db.Column(db.Integer, primary_key=True, autoincrement = True)
+    name = db.Column(db.Text, nullable = False, unique = True)
+
+    # ptag_2 = db.relationship('PostTag')
+    # thru_rel = db.relationship('Post', secondary  = 'post_tags')
+    posts = db.relationship(
+        'Post',
+        secondary="post_tags",
+        # cascade="all,delete",
+        backref="tags",
+    )
+
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
+
+
+class PostTag(db.Model):
+    '''Holds posttag id and tag id'''
+
+    def __repr__(self):
+
+      p = self
+
+      return f"This post id : {p.post__id} with a tag id of {p.tag_id}"
+
+    __tablename__ = 'post_tags'
+
+    post_id = db.Column(db.Integer, db.ForeignKey('posts.post_id'), primary_key = True)
+    tag_id = db.Column(db.Integer, db.ForeignKey('tags.id'), primary_key = True)
+
+    # post_rel = db.relationship('Post')
+    # tag_rel = db.relationship('Tag')
+
+
+
+
+
+
+
+    
 
 

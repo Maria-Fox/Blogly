@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tag Details</title>
+    <link rel="stylesheet" href="/static/details.css" />
+  </head>
+  <body>
+    <h1>{{tag.name}} Details</h1>
+    <ul id="content">
+
+    <p>{{tag.name}}</tag></p>
+    <br>
+    <form>
+      <button formaction="/tags/{{tag.id }}/edit" formmethod="GET">
+        Edit Tag
+      </button>
+      <button formaction="/tags/{{tag.id}}/delete" formmethod="POST">
+        Delete Tag
+      </button>
+    </ul>
+    </form>
+  </li>
+    <a href="/users" id="link-home">Visit Home Page</a>
+  </body>
+</html>

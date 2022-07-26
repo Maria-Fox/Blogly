@@ -36,11 +36,21 @@
             </label>
           <br />
           <br />
+          <h2>Add Tags</h2>
+
+          {%for tag in tags%}
+          <label for="tags">
+          <input type="checkbox" id = {{tag.id}} name = "tags" value = {{tag.id}}>{{tag.name}}
+        </label>
+        {%endfor%}
+
+        <br />
+        <br />
         <form>
           <button formaction="/users/{{user.user_id}}/posts/new" formmethod="POST">
             Add Post
           </button>
-          <a href="/users/{{user.user_id}}" id="cancel-butt">Cancel</a>
+          <button formaction = "/users/{{user.user_id}}">Cancel</button>
         </form>
       </div>
 

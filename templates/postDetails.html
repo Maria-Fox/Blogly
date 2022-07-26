@@ -11,8 +11,17 @@
     <h1 id="header">{{post.title}} Details</h1>
 
     <div id="content">
-      <p>Title:{{post.title}}</p>
+      <h2>Title:{{post.title}}</h2>
       <p>Content:{{post.content}}</p>
+
+      <div>
+        <h3>Tags Associated with {{post.title}}</h3>
+        {%for tag in post.tags%}
+        <li id="{{tag.id}}" name="{{tag.id}}">{{tag.name}}</p>
+        {%endfor%}
+      </li> 
+      </div>
+
       <small>Created on: {{post.created_at}}</small>
       <br />
       <form>
@@ -27,8 +36,6 @@
         </button>
       </form>
     </div>
-
-    <!-- Return to user details page LINK FIX THIS LATER-->
 
     <!-- Return to Home Page Nav  -->
     <a href="/users" id="link-home">Visit Home Page</a>

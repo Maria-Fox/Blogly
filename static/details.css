@@ -73,3 +73,9 @@ button:hover {
   bottom: 0;
   left: 0;
 }
+
+.tags {
+  background-color: rgb(158, 83, 228);
+  border: 2px solid white;
+  border-radius: 2px;
+}

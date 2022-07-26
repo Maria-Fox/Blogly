@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tags</title>
+    <link rel="stylesheet" href="/static/details.css" />
+  </head>
+  <body>
+    <h1>All Tags</h1>
+    <div id="content">
+      <ul>
+        {%for tag in tags%}
+        <li><a href="/tags/{{tag.id}}">{{tag.name}}</a></li>
+        {%endfor%}
+      </ul>
+      <br />
+      <form>
+        <button formaction="/tags/new" formmethod="GET">
+          Create a New Tag
+        </button>
+      </form>
+    </div>
+    <a href="/users" id="link-home">Visit Home Page</a>
+  </body>
+</html>

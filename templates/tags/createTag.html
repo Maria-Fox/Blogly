@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Create a Tag</title>
+    <link rel="stylesheet" href="/static/form.css">
+  </head>
+  <body>
+    <h1 id="header">Create A Tag</h1>
+    <body>
+      <div id="content">
+
+        <!-- form -->
+        <form method="POST">
+          <label for="tag_input">
+            Name
+            <input
+              type="text"
+              id="tag_input"
+              name="tag_input"
+              placeholder="Fun"
+              required
+            />
+          </label>
+  
+          <br />
+          <br />
+        <form>
+          <button formaction="/tags/new" formmethod="POST">
+            Post Tag
+          </button>
+          <button
+            formaction="/tags" formmethod="get">Cancel</button>
+        </form>
+      </div>
+
+      
+      <a href="/users" id="link-home">Visit Home Page</a>
+  </body>
+</html>
