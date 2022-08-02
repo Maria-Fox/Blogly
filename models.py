@@ -54,7 +54,7 @@ class Post(db.Model):
   user_id = db.Column(db.Integer, db.ForeignKey('users.user_id'), nullable = False)
 
 # Relationships 
-  # users = db.relationship('User')
+  users = db.relationship('User')
   ptag_1 = db.relationship('PostTag')
   thru_rel = db.relationship('Tag', secondary  = 'post_tags')
 
